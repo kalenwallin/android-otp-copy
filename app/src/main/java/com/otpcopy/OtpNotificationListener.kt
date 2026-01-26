@@ -11,10 +11,8 @@ import java.util.regex.Pattern
 class OtpNotificationListener : NotificationListenerService() {
 
     companion object {
-        // Common OTP patterns
+        // Common OTP patterns - ordered from most specific to least specific
         private val OTP_PATTERNS = listOf(
-            // Matches 4-8 digit numbers
-            Pattern.compile("\\b(\\d{4,8})\\b"),
             // Matches "OTP: 123456" or "OTP is 123456"
             Pattern.compile("(?:OTP|otp|code|verification code|verify)\\s*(?:is|:)?\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE),
             // Matches "Your code is 123456"
@@ -22,7 +20,9 @@ class OtpNotificationListener : NotificationListenerService() {
             // Matches patterns like "123456 is your OTP"
             Pattern.compile("(\\d{4,8})\\s+(?:is|is your|is the)\\s+(?:OTP|code|verification code)", Pattern.CASE_INSENSITIVE),
             // Matches "Use code 123456"
-            Pattern.compile("(?:use|enter)\\s+(?:code|OTP)?\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE)
+            Pattern.compile("(?:use|enter)\\s+(?:code|OTP)?\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE),
+            // Matches 4-8 digit numbers as last resort (moved to end to reduce false positives)
+            Pattern.compile("\\b(\\d{4,8})\\b")
         )
     }
 
@@ -58,19 +58,10 @@ class OtpNotificationListener : NotificationListenerService() {
             val matcher = pattern.matcher(text)
             if (matcher.find()) {
                 // Get the captured group (the OTP digits)
-                val groupCount = matcher.groupCount()
-                if (groupCount > 0) {
-                    val otp = matcher.group(1) ?: continue
-                    // Validate OTP length (4-8 digits)
-                    if (otp.length in 4..8 && otp.matches(Regex("\\d+"))) {
-                        return otp
-                    }
-                } else if (groupCount == 0) {
-                    // If no capturing group, use the whole match
-                    val otp = matcher.group(0) ?: continue
-                    if (otp.length in 4..8 && otp.matches(Regex("\\d+"))) {
-                        return otp
-                    }
+                val otp = matcher.group(1) ?: continue
+                // Validate OTP length (4-8 digits)
+                if (otp.length in 4..8 && otp.matches(Regex("\\d+"))) {
+                    return otp
                 }
             }
         }
