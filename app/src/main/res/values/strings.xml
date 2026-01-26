@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OTP Copy</string>
+    <string name="notification_access_title">Notification Access Required</string>
+    <string name="notification_access_message">This app needs access to notifications to detect and copy OTPs automatically. Please enable notification access in the settings.</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="notification_access_enabled">Notification Access: Enabled ✓</string>
+    <string name="notification_access_disabled">Notification Access: Disabled ✗</string>
+    <string name="how_it_works">How it works:</string>
+    <string name="instruction_1">1. Grant notification access permission</string>
+    <string name="instruction_2">2. App will automatically detect OTPs in notifications</string>
+    <string name="instruction_3">3. OTPs will be copied to clipboard automatically</string>
+    <string name="otp_copied">OTP copied to clipboard: %s</string>
+</resources>
