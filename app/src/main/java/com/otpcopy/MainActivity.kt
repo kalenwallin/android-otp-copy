@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var statusText: TextView
     private lateinit var openSettingsButton: Button
+    private lateinit var selectAppsButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,9 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         statusText = findViewById(R.id.statusText)
         openSettingsButton = findViewById(R.id.openSettingsButton)
+        selectAppsButton = findViewById(R.id.selectAppsButton)
 
         openSettingsButton.setOnClickListener {
             openNotificationSettings()
+        }
+
+        selectAppsButton.setOnClickListener {
+            openAppSelection()
         }
     }
 
@@ -60,6 +66,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openNotificationSettings() {
         val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+        startActivity(intent)
+    }
+
+    private fun openAppSelection() {
+        val intent = Intent(this, AppSelectionActivity::class.java)
         startActivity(intent)
     }
 }

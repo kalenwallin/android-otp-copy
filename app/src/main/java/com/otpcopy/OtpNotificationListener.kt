@@ -10,6 +10,13 @@ import java.util.regex.Pattern
 
 class OtpNotificationListener : NotificationListenerService() {
 
+    private lateinit var appPreferences: AppPreferences
+
+    override fun onCreate() {
+        super.onCreate()
+        appPreferences = AppPreferences(this)
+    }
+
     companion object {
         // Gmail package name for filtering notifications
         private const val GMAIL_PACKAGE = "com.google.android.gm"
@@ -34,8 +41,11 @@ class OtpNotificationListener : NotificationListenerService() {
         
         if (sbn == null) return
 
-        // Only process notifications from Gmail
-        if (sbn.packageName != GMAIL_PACKAGE) return
+        // Check if the source app is ignored
+        val sourcePackage = sbn.packageName
+        if (sourcePackage != null && appPreferences.isAppIgnored(sourcePackage)) {
+            return
+        }
 
         val notification = sbn.notification ?: return
         val extras = notification.extras ?: return

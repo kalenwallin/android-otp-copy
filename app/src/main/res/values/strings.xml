@@ -11,4 +11,12 @@
     <string name="instruction_2">2. App will automatically detect OTPs in notifications</string>
     <string name="instruction_3">3. OTPs will be copied to clipboard automatically</string>
     <string name="otp_copied">OTP copied to clipboard: %s</string>
+    <string name="select_apps">Select Apps</string>
+    <string name="app_selection_title">App Selection</string>
+    <string name="app_selection_description">Select which apps should trigger OTP detection. Uncheck an app to ignore its notifications.</string>
+    <string name="app_icon_description">App icon</string>
+    <string name="checkbox_toggle_otp_detection">Toggle OTP detection for this app</string>
+    <string name="search_apps_hint">Search apps…</string>
+    <string name="select_all">Select All</string>
+    <string name="clear_all">Clear All</string>
 </resources>
