@@ -1,7 +1,7 @@
 # User Guide - OTP Copy Android App
 
 ## Overview
-OTP Copy is an Android application that automatically detects One-Time Passwords (OTPs) in your notifications and copies them to your clipboard for easy pasting.
+OTP Copy is an Android application that automatically detects One-Time Passwords (OTPs) in Gmail notifications and copies them to your clipboard for easy pasting.
 
 ## Installation
 
@@ -28,7 +28,7 @@ When you first open the app, you'll see a screen with the notification access st
 
 Once enabled, the app:
 
-1. **Monitors Notifications**: Listens to all incoming notifications on your device
+1. **Monitors Gmail Notifications**: Listens to incoming notifications from the Gmail app
 2. **Detects OTPs**: Uses smart pattern recognition to identify OTP codes
 3. **Copies to Clipboard**: Automatically copies detected OTPs to your clipboard
 4. **Shows Confirmation**: Displays a toast message showing the copied OTP
@@ -60,24 +60,24 @@ The app recognizes various OTP formats:
 
 ## Common Use Cases
 
-### Banking Apps
-When your bank sends an OTP notification for transaction verification, the app will:
-1. Detect the OTP in the notification
+### Gmail OTP Emails
+When you receive an OTP via email in Gmail, the app will:
+1. Detect the OTP in the Gmail notification
 2. Copy it to clipboard
 3. Show a toast: "OTP copied to clipboard: 123456"
-4. You can now paste it into your banking app
+4. You can now paste it into your app or website
 
-### 2FA Authentication
-When you receive a 2FA code from Google, Facebook, or other services:
-1. The notification appears
+### 2FA Authentication via Email
+When you receive a 2FA code from Google, Facebook, or other services via email:
+1. The Gmail notification appears
 2. OTP is automatically copied
 3. Switch to the app requesting the code
 4. Paste the code
 
-### One-Time Verification
-For one-time verification codes from websites or services:
+### One-Time Verification via Email
+For one-time verification codes sent to your email:
 1. Request the code on the website
-2. Notification arrives on your phone
+2. Gmail notification arrives on your phone
 3. Code is automatically copied
 4. Return to the browser and paste
 
@@ -118,13 +118,13 @@ The app currently supports English OTP patterns. If you receive OTPs in another 
 ## Frequently Asked Questions
 
 **Q: Does this work with SMS OTPs?**
-A: Yes, if your SMS app shows notifications with the OTP visible in the notification text.
+A: No, the app only monitors Gmail notifications. OTPs sent via SMS are not detected.
 
 **Q: Will this drain my battery?**
-A: No, the app uses very minimal resources. It only activates when a notification arrives.
+A: No, the app uses very minimal resources. It only activates when a Gmail notification arrives.
 
-**Q: Can I disable OTP copying for specific apps?**
-A: Currently, the app copies OTPs from all notifications. Future versions may include app-specific filters.
+**Q: Does this work with other email apps?**
+A: No, the app is specifically designed to work only with the Gmail app (com.google.android.gm).
 
 **Q: What happens to the old clipboard content?**
 A: When an OTP is copied, it replaces whatever was previously in your clipboard.

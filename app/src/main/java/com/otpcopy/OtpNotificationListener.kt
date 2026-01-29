@@ -18,6 +18,9 @@ class OtpNotificationListener : NotificationListenerService() {
     }
 
     companion object {
+        // Gmail package name for filtering notifications
+        private const val GMAIL_PACKAGE = "com.google.android.gm"
+
         // Common OTP patterns - ordered from most specific to least specific
         private val OTP_PATTERNS = listOf(
             // Matches "OTP: 123456" or "OTP is 123456"
