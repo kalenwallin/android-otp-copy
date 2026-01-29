@@ -17,4 +17,6 @@
     <string name="app_icon_description">App icon</string>
     <string name="checkbox_toggle_otp_detection">Toggle OTP detection for this app</string>
     <string name="search_apps_hint">Search apps…</string>
+    <string name="select_all">Select All</string>
+    <string name="clear_all">Clear All</string>
 </resources>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
@@ -27,6 +28,8 @@ class AppSelectionActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var searchEditText: EditText
+    private lateinit var selectAllButton: Button
+    private lateinit var clearAllButton: Button
     private lateinit var appPreferences: AppPreferences
     private lateinit var adapter: AppListAdapter
     private var allApps: List<AppInfo> = emptyList()
@@ -43,12 +46,15 @@ class AppSelectionActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.appRecyclerView)
         progressBar = findViewById(R.id.progressBar)
         searchEditText = findViewById(R.id.searchEditText)
+        selectAllButton = findViewById(R.id.selectAllButton)
+        clearAllButton = findViewById(R.id.clearAllButton)
         
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = AppListAdapter(emptyList(), appPreferences)
         recyclerView.adapter = adapter
 
         setupSearch()
+        setupButtons()
         loadInstalledApps()
     }
 
@@ -68,6 +74,31 @@ class AppSelectionActivity : AppCompatActivity() {
                 filterApps(s?.toString() ?: "")
             }
         })
+    }
+
+    private fun setupButtons() {
+        selectAllButton.setOnClickListener {
+            selectAllApps()
+        }
+        clearAllButton.setOnClickListener {
+            clearAllApps()
+        }
+    }
+
+    private fun selectAllApps() {
+        // Enable OTP detection for all apps (remove from ignored list)
+        allApps.forEach { app ->
+            appPreferences.setAppIgnored(app.packageName, false)
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun clearAllApps() {
+        // Disable OTP detection for all apps (add to ignored list)
+        allApps.forEach { app ->
+            appPreferences.setAppIgnored(app.packageName, true)
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun filterApps(query: String) {
