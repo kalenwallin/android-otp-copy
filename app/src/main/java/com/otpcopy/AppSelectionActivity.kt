@@ -73,9 +73,8 @@ class AppSelectionActivity : AppCompatActivity() {
         
         return installedApps
             .filter { appInfo ->
-                // Exclude our own app and only include apps that can send notifications
-                appInfo.packageName != packageName &&
-                (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0 // Non-system apps
+                // Exclude our own app, include all other apps that can send notifications
+                appInfo.packageName != packageName
             }
             .map { appInfo ->
                 AppInfo(
