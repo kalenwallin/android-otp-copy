@@ -15,4 +15,5 @@
     <string name="app_selection_title">App Selection</string>
     <string name="app_selection_description">Select which apps should trigger OTP detection. Uncheck an app to ignore its notifications.</string>
     <string name="app_icon_description">App icon</string>
+    <string name="checkbox_toggle_otp_detection">Toggle OTP detection for this app</string>
 </resources>

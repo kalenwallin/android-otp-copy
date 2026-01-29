@@ -12,11 +12,10 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -26,7 +25,6 @@ class AppSelectionActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var appPreferences: AppPreferences
     private lateinit var adapter: AppListAdapter
-    private var loadJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,16 +53,11 @@ class AppSelectionActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        loadJob?.cancel()
-    }
-
     private fun loadInstalledApps() {
         progressBar.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
 
-        loadJob = CoroutineScope(Dispatchers.Main).launch {
+        lifecycleScope.launch {
             val apps = withContext(Dispatchers.IO) {
                 getInstalledApps()
             }
@@ -145,6 +138,9 @@ class AppSelectionActivity : AppCompatActivity() {
                     prefs.setAppIgnored(app.packageName, !isChecked)
                 }
 
+                // Make the checkbox not clickable directly, only through the item click
+                enabledCheckBox.isClickable = false
+                
                 itemView.setOnClickListener {
                     enabledCheckBox.isChecked = !enabledCheckBox.isChecked
                 }

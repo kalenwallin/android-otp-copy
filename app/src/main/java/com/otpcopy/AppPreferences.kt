@@ -36,7 +36,8 @@ class AppPreferences(context: Context) {
     fun addIgnoredApp(packageName: String) {
         val currentSet = getIgnoredApps().toMutableSet()
         currentSet.add(packageName)
-        prefs.edit().putStringSet(KEY_IGNORED_APPS, currentSet).apply()
+        // Create a new HashSet to avoid SharedPreferences StringSet caching issues
+        prefs.edit().putStringSet(KEY_IGNORED_APPS, HashSet(currentSet)).apply()
     }
     
     /**
@@ -45,7 +46,8 @@ class AppPreferences(context: Context) {
     fun removeIgnoredApp(packageName: String) {
         val currentSet = getIgnoredApps().toMutableSet()
         currentSet.remove(packageName)
-        prefs.edit().putStringSet(KEY_IGNORED_APPS, currentSet).apply()
+        // Create a new HashSet to avoid SharedPreferences StringSet caching issues
+        prefs.edit().putStringSet(KEY_IGNORED_APPS, HashSet(currentSet)).apply()
     }
     
     /**
