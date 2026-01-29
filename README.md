@@ -1,10 +1,10 @@
 # android-otp-copy
 
-Android app that automatically reads notifications and copies OTPs (One-Time Passwords) to the clipboard.
+Android app that automatically reads Gmail notifications and copies OTPs (One-Time Passwords) to the clipboard.
 
 ## Features
 
-- 🔔 Reads all incoming notifications in real-time
+- 🔔 Reads incoming Gmail notifications in real-time
 - 🔍 Automatically detects OTP codes using multiple pattern matching algorithms
 - 📋 Copies detected OTPs to clipboard instantly
 - 🔒 Privacy-focused: No data is stored or transmitted
@@ -25,7 +25,7 @@ The app recognizes various OTP formats commonly used by services:
 2. Open the app
 3. Tap "Open Settings" to grant notification access permission
 4. Enable "OTP Copy" in the notification access settings
-5. Done! The app will now automatically copy OTPs from notifications
+5. Done! The app will now automatically copy OTPs from Gmail notifications
 
 ## Building the App
 
