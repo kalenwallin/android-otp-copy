@@ -72,10 +72,10 @@ This document provides detailed information about the architecture and implement
 
 ### 2. OtpNotificationListener (Core Service)
 
-**Purpose**: Monitor notifications and extract OTP codes
+**Purpose**: Monitor Gmail notifications and extract OTP codes
 
 **Key Responsibilities**:
-- Listen to all incoming notifications
+- Listen to incoming Gmail notifications only
 - Extract text from notifications (title, text, bigText)
 - Match text against OTP patterns
 - Copy detected OTPs to clipboard
@@ -121,10 +121,12 @@ This document provides detailed information about the architecture and implement
 ### Notification Processing Pipeline
 
 ```
-Notification Arrives
+Gmail Notification Arrives
     ↓
 onNotificationPosted() triggered
     ↓
+Check if packageName == "com.google.android.gm"
+    ↓ (if not Gmail, return early)
 Extract notification.extras
     ↓
 Get title, text, bigText
