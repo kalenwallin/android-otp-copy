@@ -10,6 +10,13 @@ import java.util.regex.Pattern
 
 class OtpNotificationListener : NotificationListenerService() {
 
+    private lateinit var appPreferences: AppPreferences
+
+    override fun onCreate() {
+        super.onCreate()
+        appPreferences = AppPreferences(this)
+    }
+
     companion object {
         // Common OTP patterns - ordered from most specific to least specific
         private val OTP_PATTERNS = listOf(
@@ -30,6 +37,12 @@ class OtpNotificationListener : NotificationListenerService() {
         super.onNotificationPosted(sbn)
         
         if (sbn == null) return
+
+        // Check if the source app is ignored
+        val sourcePackage = sbn.packageName
+        if (sourcePackage != null && appPreferences.isAppIgnored(sourcePackage)) {
+            return
+        }
 
         val notification = sbn.notification ?: return
         val extras = notification.extras ?: return
