@@ -3,11 +3,14 @@ package com.otpcopy
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -23,8 +26,10 @@ class AppSelectionActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
+    private lateinit var searchEditText: EditText
     private lateinit var appPreferences: AppPreferences
     private lateinit var adapter: AppListAdapter
+    private var allApps: List<AppInfo> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +42,13 @@ class AppSelectionActivity : AppCompatActivity() {
         
         recyclerView = findViewById(R.id.appRecyclerView)
         progressBar = findViewById(R.id.progressBar)
+        searchEditText = findViewById(R.id.searchEditText)
         
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = AppListAdapter(emptyList(), appPreferences)
         recyclerView.adapter = adapter
 
+        setupSearch()
         loadInstalledApps()
     }
 
@@ -53,6 +60,28 @@ class AppSelectionActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun setupSearch() {
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                filterApps(s?.toString() ?: "")
+            }
+        })
+    }
+
+    private fun filterApps(query: String) {
+        val filteredApps = if (query.isEmpty()) {
+            allApps
+        } else {
+            allApps.filter { app ->
+                app.appName.contains(query, ignoreCase = true) ||
+                app.packageName.contains(query, ignoreCase = true)
+            }
+        }
+        adapter.updateApps(filteredApps)
+    }
+
     private fun loadInstalledApps() {
         progressBar.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
@@ -61,6 +90,7 @@ class AppSelectionActivity : AppCompatActivity() {
             val apps = withContext(Dispatchers.IO) {
                 getInstalledApps()
             }
+            allApps = apps
             adapter.updateApps(apps)
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
