@@ -40,14 +40,8 @@ get_device() {
         echo "$usb_device"
         return
     fi
-    # Prefer IP-based wireless connection (simpler format) over mDNS
-    local ip_device=$(adb devices 2>/dev/null | grep -E "^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+.*device$" | head -1 | awk '{print $1}')
-    if [ -n "$ip_device" ]; then
-        echo "$ip_device"
-        return
-    fi
-    # Fall back to first available device (handles mDNS names with spaces by using tab delimiter)
-    adb devices 2>/dev/null | grep -E $'\tdevice$' | head -1 | cut -f1
+    # Fall back to first available device
+    adb devices 2>/dev/null | grep -E "device$" | head -1 | awk '{print $1}'
 }
 
 # Wrapper for adb commands to use specific device
