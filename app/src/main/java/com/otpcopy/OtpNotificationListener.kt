@@ -27,8 +27,8 @@ class OtpNotificationListener : NotificationListenerService() {
             Pattern.compile("(?:OTP|otp|code|verification code|verify)\\s*(?:is|:)?\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE),
             // Matches "Your code is 123456"
             Pattern.compile("(?:Your|your)\\s+(?:code|OTP|verification code)\\s+(?:is|:)\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE),
-            // Matches patterns like "123456 is your OTP"
-            Pattern.compile("(\\d{4,8})\\s+(?:is|is your|is the)\\s+(?:OTP|code|verification code)", Pattern.CASE_INSENSITIVE),
+            // Matches patterns like "123456 is your OTP" or "123456 is your one-time password"
+            Pattern.compile("(\\d{4,8})\\s+(?:is|is your|is the)\\s+(?:OTP|code|verification code|one-time password|one time password)", Pattern.CASE_INSENSITIVE),
             // Matches "Use code 123456"
             Pattern.compile("(?:use|enter)\\s+(?:code|OTP)?\\s*(\\d{4,8})", Pattern.CASE_INSENSITIVE),
             // Matches 4-8 digit numbers as last resort (moved to end to reduce false positives)
