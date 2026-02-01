@@ -19,4 +19,13 @@
     <string name="search_apps_hint">Search apps…</string>
     <string name="select_all">Select All</string>
     <string name="clear_all">Clear All</string>
+
+    <!-- Android 15 workaround -->
+    <string name="android15_workaround_title">Android 15 Users</string>
+    <string name="android15_workaround_description">Starting from Android 15, Google blocks third-party apps from reading notifications that may contain verification codes. If OTPs are not being detected, try one of these workarounds:</string>
+    <string name="android15_workaround_adb_title">Option 1: ADB Command</string>
+    <string name="android15_workaround_adb_command">adb shell appops set com.otpcopy RECEIVE_SENSITIVE_NOTIFICATIONS allow</string>
+    <string name="android15_workaround_shizuku_title">Option 2: Using Shizuku</string>
+    <string name="android15_workaround_shizuku_description">Install App Ops and Shizuku, then grant the RECEIVE_SENSITIVE_NOTIFICATIONS permission to OTP Copy in App Ops.</string>
+    <string name="android15_workaround_note">Note: After applying either workaround, restart your phone for changes to take effect.</string>
 </resources>
