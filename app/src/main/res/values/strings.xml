@@ -24,4 +24,5 @@
     <string name="android15_workaround_title">Android 15 Users</string>
     <string name="android15_workaround_description">If OTPs are not being detected, you may need to disable the Android smart reply feature:</string>
     <string name="android15_workaround_steps">Phone settings → Notifications → Advanced settings → "Suggest actions and replies for notifications" (toggle this OFF)</string>
+    <string name="open_notification_settings">Open Notification Settings</string>
 </resources>
