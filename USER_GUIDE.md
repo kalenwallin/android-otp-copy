@@ -94,6 +94,9 @@ For one-time verification codes sent to your email:
 **Problem**: App is not running
 - **Solution**: The app works in the background. You don't need to keep it open. However, if you've force-stopped it or cleared it from recent apps, it may need to be reopened once.
 
+**Problem**: Cannot read Google message notifications
+- **Solution**: Disable the Android smart reply feature by going to: Phone settings → Notifications → Advanced settings → "Suggest actions and replies for notifications" and toggle it **OFF**. This setting can interfere with the app's ability to read notification content.
+
 ### Permission keeps getting disabled
 
 Some Android manufacturers (especially Xiaomi, Oppo, Vivo) have aggressive battery optimization:

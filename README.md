@@ -18,6 +18,16 @@ Android app that automatically reads notifications and copies OTPs (One-Time Pas
 4. Enable "OTP Copy" in the notification access settings
 5. Done! The app will now automatically copy OTPs from Gmail notifications
 
+### Important: For Google Message Notifications
+
+To ensure the app can read Google message notifications correctly, you need to disable a specific Android setting:
+
+**Path**: Phone settings → Notifications → Advanced settings → Suggest actions and replies for notifications
+
+**Action**: Toggle this setting **OFF**
+
+Without disabling this setting, Google's smart reply feature may interfere with the app's ability to read notification content.
+
 ## Building the App
 
 ### Prerequisites
