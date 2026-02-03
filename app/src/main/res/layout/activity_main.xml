@@ -149,67 +149,28 @@
         app:layout_constraintTop_toBottomOf="@id/android15Title" />
 
     <TextView
-        android:id="@+id/adbTitle"
+        android:id="@+id/android15Steps"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/android15_workaround_adb_title"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:text="@string/android15_workaround_steps"
+        android:textSize="14sp"
+        android:gravity="center"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/android15Description" />
 
-    <TextView
-        android:id="@+id/adbCommand"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/openNotificationSettingsButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/android15_workaround_adb_command"
-        android:textSize="12sp"
-        android:fontFamily="monospace"
-        android:background="#E0E0E0"
-        android:padding="12dp"
-        android:textIsSelectable="true"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adbTitle" />
-
-    <TextView
-        android:id="@+id/shizukuTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/android15_workaround_shizuku_title"
+        android:text="@string/open_notification_settings"
         android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adbCommand" />
-
-    <TextView
-        android:id="@+id/shizukuDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/android15_workaround_shizuku_description"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shizukuTitle" />
-
-    <TextView
-        android:id="@+id/android15Note"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/android15_workaround_note"
-        android:textSize="14sp"
-        android:textStyle="italic"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shizukuDescription"
+        app:layout_constraintTop_toBottomOf="@id/android15Steps"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
