@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSystemNotificationSettings() {
-        val intent = Intent(Settings.ACTION_NOTIFICATION_SETTINGS)
+        val intent = Intent("android.settings.NOTIFICATION_SETTINGS")
         startActivity(intent)
     }
 }
